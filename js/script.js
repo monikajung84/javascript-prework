@@ -1,44 +1,58 @@
 
   var argComputerMove, argMoveId, argPlayerMove, computerMove, playerInput, playerMove, randomNumber;
 
-  playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-  console.log('wybór ruchu gracza to: ' + playerInput);
-  playerMove = getMoveName(playerInput);
-  console.log('ruch gracza to: ' + playerMove);
-  randomNumber = Math.floor(Math.random() * 3 + 1);
-  console.log('wylosowana liczba to: ' + randomNumber);
-  computerMove = getMoveName(randomNumber);
-  console.log('ruch komputera to: ' + computerMove);
-  displayResult(playerMove, computerMove);
+  var argButtonName, buttonRock, buttonPaper, buttonScissors;
 
-
-  function getMoveName(argMoveId) {
-    console.log('wywołano funkcję getMoveName z argumentem: ' + argMoveId);
-    if (argMoveId == 1) {
-      return 'kamień';
-    } else if (argMoveId == 2) {
-      return 'papier';
-    } else if (argMoveId == 3) {
-      return 'nożyce';
-    } else {
-      printMessage('Nie znam ruchu o id ' + argMoveId + '. Zakładam, że chodziło o "kamień".');
-      return 'kamień';
-    }
-  }
-  printMessage('Twój ruch: ' + playerMove);
+  /**
+   * Describe this function...
+   */
+  function buttonClicked(argButtonName) {
+    clearMessages();
+    console.log(argButtonName + ' Was clicked');
+    playerMove = argButtonName;
+    console.log('player move is: ' + playerMove);
+    randomNumber = Math.floor(Math.random() * 3 + 1);
+    console.log('Draw number is: ' + randomNumber);
+    computerMove = getMoveName(randomNumber);
+    console.log('Computer move is: ' + computerMove);
+    displayResult(playerMove, computerMove);
   
-  function displayResult(argPlayerMove, argComputerMove) {
-    console.log('wywołano funkcję displayResults z argumentami: ' + argPlayerMove + ', ' + argComputerMove);
-    if (argPlayerMove == 'papier' && argComputerMove == 'kamień') {
-      printMessage('Wygrywasz!');
-    } else if (argPlayerMove == 'kamień' && argComputerMove == 'nożyce') {
-        printMessage('Wygrywasz!');
-    } else if (argPlayerMove == 'nożyce' && argComputerMove == 'papier') {
-        printMessage('Wygrywasz!');
-    } else if (argPlayerMove == argComputerMove) {
-        printMessage('Remis');
-    } else {
-      printMessage('Przegrywasz :(');
+  
+    function getMoveName(argMoveId) {
+      console.log('the getMoveName function with the argument was called: ' + argMoveId);
+      if (argMoveId == 1) {
+        return 'rock';
+      } else if (argMoveId == 2) {
+        return 'paper';
+      } else if (argMoveId == 3) {
+        return 'scissors';
+      } else {
+        printMessage('I do not know move about id ' + argMoveId + '. I assume that it was about "rock".');
+        return 'rock';
+      }
     }
-    printMessage('Zagrałem ' + argComputerMove + ', a Ty wybrałeś ' + argPlayerMove);
+    printMessage('Your move: ' + playerMove);
+    
+    function displayResult(argPlayerMove, argComputerMove) {
+      console.log('the displayResults function with the argument was called: ' + argPlayerMove + ', ' + argComputerMove);
+      if (argPlayerMove == 'paper' && argComputerMove == 'rock') {
+        printMessage('Win!');
+      } else if (argPlayerMove == 'rock' && argComputerMove == 'scissors') {
+          printMessage('Win!');
+      } else if (argPlayerMove == 'scissors' && argComputerMove == 'paper') {
+          printMessage('Win!');
+      } else if (argPlayerMove == argComputerMove) {
+          printMessage('Draw');
+      } else {
+        printMessage('Lose :(');
+      }
+      printMessage('I have chosen: ' + argComputerMove + ', and You have chosen: ' + argPlayerMove);
+    }
   }
+
+  buttonRock = document.getElementById('button-rock');
+  buttonPaper = document.getElementById('button-paper');
+  buttonScissors = document.getElementById('button-scissors');
+  buttonRock.addEventListener('click', function() { buttonClicked('rock'); });
+  buttonPaper.addEventListener('click', function() { buttonClicked('paper'); });
+  buttonScissors.addEventListener('click', function() { buttonClicked('scissors'); });

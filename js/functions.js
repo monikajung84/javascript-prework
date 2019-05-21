@@ -4,5 +4,5 @@ function printMessage(msg){
     document.getElementById('messages').appendChild(div);
 }
 function clearMessages(){
-    document.getElementById('messages').innerHTML = 'Zagrałem kamień! jeśli twój ruch to papier, wygrywasz!';
+    document.getElementById('messages').innerHTML = '';
 }
