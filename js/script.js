@@ -1,18 +1,12 @@
-var argComputerMove, argMoveId, argPlayerMove, computerMove, playerInput, playerMove, randomNumber;
 
-var argButtonName, buttonRock, buttonPaper, buttonScissors;
-
-/**
- * Describe this function...
- */
 function buttonClicked(argButtonName) {
   clearMessages();
   console.log(argButtonName + ' Was clicked');
-  playerMove = argButtonName;
+  const playerMove = argButtonName;
   console.log('player move is: ' + playerMove);
-  randomNumber = Math.floor(Math.random() * 3 + 1);
+  const randomNumber = Math.floor(Math.random() * 3 + 1);
   console.log('Draw number is: ' + randomNumber);
-  computerMove = getMoveName(randomNumber);
+  const computerMove = getMoveName(randomNumber);
   console.log('Computer move is: ' + computerMove);
   displayResult(playerMove, computerMove);
 
